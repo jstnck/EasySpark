@@ -1,0 +1,51 @@
+- hosts: all
+  remote_user: vagrant
+  become: yes
+  become_user: root
+  
+  tasks:
+  
+  - name: create project directory
+    file:
+      path: /home/vagrant/spark/
+      state: directory
+  
+  - name: Update apt-get repo and cache
+    apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+    #become: yes
+  
+  - name: Upgrade all apt packages
+    apt: upgrade=dist force_apt_get=yes
+    #become: yes
+     
+  - name: install java jre & jdk
+    apt:
+      pkg:
+      - default-jre
+      - default-jdk
+      update_cache: yes
+      state: latest
+
+  - name: ensure spark dir exists
+    file:
+      path: /home/vagrant/spark/
+      state: directory
+    
+  - name: copy spark installer from localhost to manager vm and extract tar
+    #become: yes
+    unarchive:
+      src: ~/projects/sparkvm/files/spark-2.4.5-bin-hadoop2.7.tgz
+      dest: /home/vagrant/spark/
+      #mode: '0751'
+    
+  - name: Create a symbolic link
+    file:
+      src: /home/vagrant/spark/spark-2.4.5-bin-hadoop2.7
+      dest: /usr/local/spark
+      state: link 
+
+  - name: set spark env variable
+    lineinfile:
+      path: /etc/environment
+      insertafter: EOF
+      line: SPARK_HOME=/usr/local/spark
