@@ -40,5 +40,5 @@ Thats it! The Spark files should be located at /home/vagrant/spark, and a linked
 
 To access the Spark cli, you can ssh into your VM, and run '$SPARK_HOME/bin/spark-shell'
 
-To start a Spark master instance, you can run '$SPARK_HOME/sbin/start-mater.sh'
+To start a Spark master instance, you can run '$SPARK_HOME/sbin/start-master.sh'
 - The Spark web interface can be found by using your browser and visiting 'localhost:8080'
