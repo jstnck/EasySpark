@@ -1,6 +1,6 @@
 - hosts: all
   vars:
-    spark_file: spark-2.4.5-bin-hadoop2.7.tgz
+    spark_dist: spark-2.4.5-bin-hadoop2.7.tgz
   remote_user: vagrant
   become: yes
   become_user: root
@@ -33,12 +33,12 @@
     
   - name: copy spark installer from localhost to manager vm and extract tar
     unarchive:
-      src: ~/projects/sparkvm/files/{{ spark_file }}
+      src: ~/projects/sparkvm/files/{{ spark_dist }}.tgz
       dest: /home/vagrant/spark/
     
   - name: Create a symbolic link
     file:
-      src: /home/vagrant/spark/spark-2.4.5-bin-hadoop2.7
+      src: /home/vagrant/spark/{{ spark_dist }}
       dest: /usr/local/spark
       state: link 
 
