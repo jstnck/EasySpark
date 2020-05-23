@@ -25,11 +25,13 @@ Hello, this is a simple process for setting up a standalone Spark instance on a 
 3. Download the Spark archive - in my case the filename is 'spark-2.4.5-bin-hadoop2.7.tgz'. Save the file in 'easySpark/files/
 4. Run 'vagrant up' from your command line. This will download your VM OS (the hasicorp dist of ubuntu 18.04), and start your VM. 
     
-    5.1. From the output, you will see vagrant set up the virutal machine, then call the ansible playbook to provision the machine. Hopefully, the playbook will run without error. It may take a while as it updates all apt packages and installs java, which is required to run Spark.
+    4.1. From the output, you will see vagrant set up the virutal machine, then call the ansible playbook to provision the machine. Hopefully, the playbook will run without error. It may take a while as it updates all apt packages and installs java, which is required to run Spark.
 5. Check that its running with 'vagrant status'.
 
 
 Thats it! The Spark files should be located at /home/vagrant/spark, and a linked to the directory /usr/local/spark. This /usr directory is in the VM's env variable list at $SPARK_HOME.
+
+## Accessing Spark
 
  You can access the machine directly by running 'vagrant ssh'. If you want to use ssh to access the machine without 'vagrant ssh', you can use ssh normally:
 - the user is 'vagrant'
