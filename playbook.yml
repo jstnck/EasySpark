@@ -1,6 +1,6 @@
 - hosts: all
   vars:
-    spark_dist: spark-2.4.5-bin-hadoop2.7.tgz
+    spark_dist: spark-2.4.5-bin-hadoop2.7
   remote_user: vagrant
   become: yes
   become_user: root
