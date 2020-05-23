@@ -1,4 +1,6 @@
 - hosts: all
+  vars:
+    spark_file: spark-2.4.5-bin-hadoop2.7.tgz
   remote_user: vagrant
   become: yes
   become_user: root
@@ -12,11 +14,9 @@
   
   - name: Update apt-get repo and cache
     apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
-    #become: yes
   
   - name: Upgrade all apt packages
     apt: upgrade=dist force_apt_get=yes
-    #become: yes
      
   - name: install java jre & jdk
     apt:
@@ -32,11 +32,9 @@
       state: directory
     
   - name: copy spark installer from localhost to manager vm and extract tar
-    #become: yes
     unarchive:
-      src: ~/projects/sparkvm/files/spark-2.4.5-bin-hadoop2.7.tgz
+      src: ~/projects/sparkvm/files/{{ spark_file }}
       dest: /home/vagrant/spark/
-      #mode: '0751'
     
   - name: Create a symbolic link
     file:

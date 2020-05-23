@@ -16,7 +16,7 @@ Hello, this is a simple process for setting up a standalone Spark instance on a 
 - Optional: [Ansible mini tutorial](https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-apache-on-ubuntu-18-04) - you can follow these instructions using the vagrant VM you just set up as the Ansible Host
   
 ### Spark
-- Donwload Spark. For this repo, I used Spark 2.4.5, prebuilt for Hadoop 2.7.
+- Donwload [Spark](https://spark.apache.org/downloads.html). For this repo, I used Spark 2.4.5, prebuilt for Hadoop 2.7.
 
 ## Instructions
 
