@@ -23,6 +23,8 @@ Hello, this is a simple process for setting up a standalone Spark instance on a 
 1. Install, VirtualBox, Vagrant, and Ansible.
 2. Clone this repo to your local machine. 
 3. Download the Spark archive - in my case the filename is 'spark-2.4.5-bin-hadoop2.7.tgz'. Save the file in 'easySpark/files/
+
+    3.1. If you download another ditro of spark, you need to modify playbook.yml. At the beginning of the playbook, change the 'spark_dist' variable to match the filename (minus the .tgz suffix)
 4. Run 'vagrant up' from your command line. This will download your VM OS (the hasicorp dist of ubuntu 18.04), and start your VM. 
     
     4.1. From the output, you will see vagrant set up the virutal machine, then call the ansible playbook to provision the machine. Hopefully, the playbook will run without error. It may take a while as it updates all apt packages and installs java, which is required to run Spark.
@@ -37,9 +39,12 @@ Thats it! The Spark files should be located at /home/vagrant/spark, and a linked
 - the user is 'vagrant'
 - the ip of the VM is 192.168.10.101 (this can be modified in the Vagrantfile)
 - the ssh private key is at "easySpark/.vagrant/machines/default/virtualbox/private_key" 
-- the port is 2200
+- the port is 2222
 
 To access the Spark cli, you can ssh into your VM, and run '$SPARK_HOME/bin/spark-shell'
 
-To start a Spark master instance, you can run '$SPARK_HOME/sbin/start-master.sh'
+To start a Spark master instance, you can run '$SPARK_HOME/sbin/start-master.sh'. To stop, there is a 'stop-master.sh' script.
 - The Spark web interface can be found by using your browser and visiting 'localhost:8080'
+
+### next
+I'm attempting to configure a spark cluster on 3 raspberry pis - you can check out that project (work on progress) at my RpiclusteR repo.
